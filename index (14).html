@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#e8eef6">
+  <title>Mi Cumpleaños · Ahorro y Invitados</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="shell">
+    <header class="topbar">
+      <button class="who" data-action="profile" title="Editar perfil">
+        <span class="avatar" id="avatar">🎂</span>
+        <span class="who-text"><small id="greetSmall"></small><strong id="greetName"></strong></span>
+      </button>
+
+      <nav class="tabs" id="tabs">
+        <button data-action="goto" data-view="resumen">Resumen</button>
+        <button data-action="goto" data-view="gastos">Gastos</button>
+        <button data-action="goto" data-view="invitados">Invitados</button>
+      </nav>
+
+      <div class="top-actions">
+        <button class="chip" data-action="profile" id="countdown"></button>
+        <button class="btn lime" data-action="open-save">+ Ahorrar</button>
+      </div>
+    </header>
+
+    <main>
+      <section id="view-resumen" class="view"></section>
+      <section id="view-gastos" class="view"></section>
+      <section id="view-invitados" class="view"></section>
+    </main>
+  </div>
+
+  <!-- Perfil -->
+  <dialog id="welcomeDialog">
+    <form id="welcomeForm" class="dlg">
+      <h2>👋 ¡Hola! Soy tu asistente de cumpleaños</h2>
+      <p class="muted">Te ayudo a ahorrar para cada gasto y a calcular todo según tus invitados.</p>
+      <label>¿Cómo te llamas?
+        <input type="text" id="wName" placeholder="Tu nombre" required maxlength="30">
+      </label>
+      <label>Fecha de tu cumpleaños / fiesta
+        <input type="date" id="wDate">
+      </label>
+      <div class="row gap end">
+        <button type="submit" class="btn dark">Guardar</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- Registrar ahorro -->
+  <dialog id="saveDialog">
+    <form id="saveForm" class="dlg">
+      <h2>💰 Registrar ahorro</h2>
+      <label>¿Para qué gasto?
+        <select id="sItem"></select>
+      </label>
+      <label>Monto (S/)
+        <input type="number" id="sAmount" min="0.01" step="0.01" placeholder="0.00" required>
+      </label>
+      <label>Fecha
+        <input type="date" id="sDate" required>
+      </label>
+      <p class="small muted">Si eliges "Repartir entre todos", divido el monto según lo que le falta a cada gasto.</p>
+      <div class="row gap end">
+        <button type="button" class="btn outline" data-action="close">Cancelar</button>
+        <button type="submit" class="btn dark">Guardar</button>
+      </div>
+    </form>
+  </dialog>
+
+  <input type="file" id="importFile" accept="application/json" hidden>
+  <script src="app.js"></script>
+</body>
+</html>
